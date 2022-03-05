@@ -7,17 +7,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import uni.djem.news.RequestDtos.EditUserRequest;
 import uni.djem.news.RequestDtos.LoginRequest;
 import uni.djem.news.RequestDtos.RegisterRequest;
 import uni.djem.news.ResponseDtos.MessageResponse;
@@ -93,28 +89,6 @@ public class AuthController {
 		UserDetailsResponse response = new UserDetailsResponse(user.getId(), user.getUsername(), user.getName());
 		
 		return new ResponseEntity<UserDetailsResponse>(response, HttpStatus.OK);
-	}
-	
-	@PutMapping("/edit-profile")
-	public ResponseEntity<MessageResponse> editUser(@RequestBody EditUserRequest userRequest, HttpSession session) {
-		UserEntity userSession = (UserEntity)session.getAttribute("user");
-		
-		if(userSession==null) {
-			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "You need to login!");
-		}
-		
-		UserEntity user = userRepository.findByUsername(userSession.getUsername());
-		
-		if(userRequest.getName()=="") {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "You need to provide name!");
-		}
-		
-		user.setName(userRequest.getName());
-		
-		userRepository.save(user);
-		
-		MessageResponse response = new MessageResponse("You have successfully edited the profile");
-		return new ResponseEntity<MessageResponse>(response, HttpStatus.OK);
 	}
 	
 	private String hashMe(String password) {		
