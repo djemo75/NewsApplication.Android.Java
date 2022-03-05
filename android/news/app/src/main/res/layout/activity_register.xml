@@ -136,7 +136,7 @@
         android:textColor="#FFF"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/imageVIew"
-        android:text="Login"
+        android:text="Register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </RelativeLayout>
