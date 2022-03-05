@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/view_news_menu_back"
+        android:title="Back"
+        app:showAsAction="always"
+        ></item>
+    <item
+    android:id="@+id/view_news_menu_edit"
+    android:title="Edit"
+    app:showAsAction="never"
+    ></item>
+    <item
+        android:id="@+id/view_news_menu_delete"
+        android:title="Delete"
+        app:showAsAction="never"
+        ></item>
+</menu>
